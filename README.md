@@ -18,7 +18,7 @@ Settings → Pages → Source: **Deploy from a branch** → Branch: `main`, thư
 2. Xóa code mẫu, dán toàn bộ nội dung file `apps-script/Code.gs`, bấm Save.
 3. Deploy → New deployment → loại **Web app**. Execute as: **Me**. Who has access: **Anyone**. Bấm Deploy và cho phép quyền.
 4. Copy **Web app URL** (dạng `https://script.google.com/macros/s/.../exec`).
-5. Mở `index.html` trong repo này, tìm dòng `const SCRIPT_URL="";` và dán URL vào giữa hai dấu ngoặc kép. Commit.
+5. Mở `index.html` trong repo này, tìm dòng `const SCRIPT_URL="…";` và thay bằng URL mới nếu deploy lại. Commit. (URL hiện tại đã được gắn sẵn.)
 
 Từ đó, mỗi lần nhân viên bấm "Xem kết quả", kết quả được ghi vào hai trang **Web - Tong hop** (mỗi người một dòng) và **Web - Chi tiet** (điểm từng chiều).
 
