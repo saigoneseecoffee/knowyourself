@@ -11,7 +11,7 @@ function doPost(e) {
     const d = JSON.parse(e.postData.contents);
     const name = String(d.name || '').trim().slice(0, 80);
     if (!name || !d.testName) return json({ ok: false, error: 'missing name or test' });
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SpreadsheetApp.openById('1MX9qsupqhNMaz96kVfq9sVZZ_8-OAXSma2sepQC0WMQ');
     const now = new Date();
 
     // Tổng hợp: mỗi người một dòng, mỗi bài một cột
