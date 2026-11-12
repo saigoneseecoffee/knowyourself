@@ -1,12 +1,14 @@
 # knowyourself
 
-Saigonesee – 17 bài đánh giá tính cách, lãnh đạo và động lực cho nhân viên. Nhân viên nhập tên, chọn tiếng Việt hoặc English, làm bài và xem kết quả ngay. Kết quả được gửi về Google Sheet của quán.
+Saigonesee – 18 bài đánh giá tính cách, lãnh đạo, động lực và kỹ năng tại quán cho nhân viên. Nhân viên nhập tên, chọn tiếng Việt hoặc English, làm bài và xem kết quả ngay. Kết quả được gửi về Google Sheet của quán.
 
 ## Các bài
 
-1. 16 kiểu tính cách · 2. Big Five · 3. Trung thực – Khiêm tốn (HEXACO) · 4. Enneagram · 5. DISC · 6. Vai trò trong nhóm (Belbin) · 7. Lãnh đạo theo tình huống · 8. 6 phong cách lãnh đạo (Goleman) · 9. Xử lý xung đột (Thomas-Kilmann) · 10. Bốn nhóm thế mạnh · 11. Phẩm chất (VIA) · 12. EQ · 13. Grit · 14. 5 ngôn ngữ ghi nhận · 15. Sở thích nghề (RIASEC) · 16. Điều gì tạo động lực cho bạn · 17. Mức căng thẳng và nóng giận (Frazzle Factor)
+1. 16 kiểu tính cách · 2. Big Five · 3. Trung thực – Khiêm tốn (HEXACO) · 4. Enneagram · 5. DISC · 6. Vai trò trong nhóm (Belbin) · 7. Lãnh đạo theo tình huống · 8. 6 phong cách lãnh đạo (Goleman) · 9. Xử lý xung đột (Thomas-Kilmann) · 10. Bốn nhóm thế mạnh · 11. Phẩm chất (VIA) · 12. EQ · 13. Grit · 14. 5 ngôn ngữ ghi nhận · 15. Sở thích nghề (RIASEC) · 16. Điều gì tạo động lực cho bạn · 17. Mức căng thẳng và nóng giận (Frazzle Factor) · 18. Xử lý tình huống tại quán
 
-Câu hỏi là bản rút gọn tự viết theo từng mô hình, không phải bộ câu hỏi chính thức. Dùng để hiểu người và giao tiếp, không dùng để quyết định tuyển dụng hay cho nghỉ việc.
+Câu hỏi là bản rút gọn tự viết theo từng mô hình, không phải bộ câu hỏi chính thức.
+
+Bài 18 khác 17 bài kia: 20 câu trắc nghiệm có đáp án đúng (tính tiền, công thức, chi phí, xử lý khi đông khách, an toàn thực phẩm), giới hạn 15 phút, làm một lần. Kết quả chỉ hiện điểm theo nhóm, không hiện đáp án. Đây không phải bài IQ hay Wonderlic. Dùng để hiểu người và giao tiếp, không dùng để quyết định tuyển dụng hay cho nghỉ việc.
 
 ## Bật GitHub Pages
 
