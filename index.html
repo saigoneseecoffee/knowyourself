@@ -471,15 +471,15 @@ const SKDRAW={QT:8,TT:3,CT:3,FC:3,UT:3};
 const SKTOPIC={vi:{VS:"Vệ sinh cá nhân",BE:"Bệnh và báo cáo",TN:"Thời gian và nhiệt độ",LN:"Lây nhiễm chéo và bảo quản",KT:"Làm sạch và khử trùng",DU:"Dị ứng và luật Massachusetts",NH:"Nhận hàng và côn trùng"},
  en:{VS:"Personal hygiene",BE:"Illness and reporting",TN:"Time and temperature",LN:"Cross-contamination and storage",KT:"Cleaning and sanitizing",DU:"Allergens and Massachusetts rules",NH:"Receiving and pests"}};
 function shuf(x){const a=x.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function skillDraw(){const out=[];Object.entries(SKDRAW).forEach(([d,n])=>shuf(SKBANK.filter(q=>q[1]===d)).slice(0,n).forEach(q=>out.push([q[0],shuf([0,1,2,3])])));return shuf(out)}
+function skillDraw(seen){const sn=new Set(seen||[]),out=[];Object.entries(SKDRAW).forEach(([d,n])=>{const all=SKBANK.filter(q=>q[1]===d),fresh=shuf(all.filter(q=>!sn.has(q[0]))),pick=fresh.length>=n?fresh.slice(0,n):[...fresh,...shuf(all.filter(q=>sn.has(q[0]))).slice(0,n-fresh.length)];pick.forEach(q=>out.push([q[0],shuf([0,1,2,3])]))});return shuf(out)}
 function skillItems(lg,draw){return (draw||[]).filter(([id])=>SKB[id]).map(([id,p])=>{const q=SKB[id],o=lg==="vi"?q[4]:q[6];return [lg==="vi"?q[3]:q[5],q[1],0,p.map(k=>o[k]),p.indexOf(0),id]})}
 ITEMS.vi.skill=[];ITEMS.en.skill=[];
 const SKL={vi:{start:"Bắt đầu làm bài",startNote:"Đồng hồ 15 phút chạy ngay khi bấm. Làm một lần, nộp rồi không sửa được.",left:"Còn",timeUp:"Hết giờ, bài đã tự nộp.",unanswered:"Còn {n} câu chưa chọn. Bấm Nộp bài lần nữa để nộp luôn, câu bỏ trống tính sai.",submit:"Nộp bài",correct:"câu đúng",minutes:"phút",time:"Thời gian làm (phút)",
-  prac:"Ôn tập an toàn thực phẩm",pracNote:"Không tính giờ, không lưu điểm. Trả lời xong sẽ thấy đáp án đúng và giải thích. 180 câu theo kiến thức của chứng chỉ Food Handler, Food Protection Manager và luật dị ứng Massachusetts. Có thể chọn ôn từng chủ đề.",next:"Câu tiếp",exit:"Thoát ôn tập",tally:"Đúng {a}/{n}",right:"Đúng rồi.",wrong:"Chưa đúng. Đáp án đúng:",qn:"Câu {a} / {n}",lap:"Bạn đã ôn hết các câu của phần này. Các câu sẽ được xáo lại từ đầu.",all:"Tất cả",review:"Xem lại bài",onlyWrong:"Chỉ câu sai",showAll:"Tất cả 20 câu",yourAns:"Bạn chọn:",rightAns:"Đáp án đúng:",noAns:"(bỏ trống)",allRight:"Bạn trả lời đúng hết. Giỏi lắm!",
+  prac:"Ôn tập an toàn thực phẩm",pracNote:"Không tính giờ, không lưu điểm. Trả lời xong sẽ thấy đáp án đúng và giải thích. 180 câu theo kiến thức của chứng chỉ Food Handler, Food Protection Manager và luật dị ứng Massachusetts. Có thể chọn ôn từng chủ đề.",next:"Câu tiếp",exit:"Thoát ôn tập",tally:"Đúng {a}/{n}",right:"Đúng rồi.",wrong:"Chưa đúng. Đáp án đúng:",qn:"Câu {a} / {n}",lap:"Bạn đã ôn hết các câu của phần này. Các câu sẽ được xáo lại từ đầu.",all:"Tất cả",review:"Xem lại bài",retry:"Làm đề mới",retryNote:"Lần làm bài thứ {n}. Đề mới ưu tiên những câu bạn chưa gặp; còn {m} câu bạn chưa gặp trong thư viện 300 câu.",att:"lần",attLabel:"Lần làm bài",onlyWrong:"Chỉ câu sai",showAll:"Tất cả 20 câu",yourAns:"Bạn chọn:",rightAns:"Đáp án đúng:",noAns:"(bỏ trống)",allRight:"Bạn trả lời đúng hết. Giỏi lắm!",
   lv:["Cần kèm thêm","Trung bình","Tốt","Rất tốt"],how:"Bài này đo kỹ năng xử lý công việc thật ở quán, không phải trí thông minh. Điểm thấp ở nhóm nào thì đó là chỗ nên kèm thêm. Xem lại từng câu bên dưới để biết sai ở đâu và vì sao.",strong:"Nhóm làm tốt nhất",weak:"Nhóm nên luyện thêm",
   tips:{TT:"Luyện đếm két và thối tiền cùng quản lý; khi đông thì dùng máy tính hoặc để POS tính.",CT:"Xem lại web công thức, tập quy đổi khi làm mẻ lớn hoặc đơn catering.",FC:"Hỏi quản lý cách tính food cost; tập kiểm kho và đặt hàng cùng người phụ trách.",UT:"Theo dõi người dẫn ca xử lý giờ đông. Nguyên tắc: chào khách trước, pha theo thứ tự đơn vào.",QT:"Bấm Ôn tập an toàn thực phẩm bên dưới để học 180 câu có giải thích, chia theo chủ đề; khi làm việc mà không chắc thì hỏi ngay, không đoán."}},
  en:{start:"Start the test",startNote:"The 15-minute clock starts as soon as you tap. One try only; you can't change answers after submitting.",left:"Left",timeUp:"Time's up. Your test was submitted.",unanswered:"{n} questions left. Tap Submit again to hand it in; blanks count as wrong.",submit:"Submit",correct:"correct",minutes:"min",time:"Time taken (min)",
-  prac:"Food safety practice",pracNote:"No timer and no score saved. After each answer you see the right answer and why. 180 questions covering Food Handler and Food Protection Manager knowledge plus Massachusetts allergen rules. You can practice one topic at a time.",next:"Next question",exit:"Leave practice",tally:"{a}/{n} correct",right:"Correct.",wrong:"Not quite. The right answer:",qn:"Question {a} of {n}",lap:"You have gone through every question in this set. Starting over in a new order.",all:"All",review:"Review your answers",onlyWrong:"Wrong only",showAll:"All 20",yourAns:"Your answer:",rightAns:"Right answer:",noAns:"(left blank)",allRight:"You got every question right. Great job!",
+  prac:"Food safety practice",pracNote:"No timer and no score saved. After each answer you see the right answer and why. 180 questions covering Food Handler and Food Protection Manager knowledge plus Massachusetts allergen rules. You can practice one topic at a time.",next:"Next question",exit:"Leave practice",tally:"{a}/{n} correct",right:"Correct.",wrong:"Not quite. The right answer:",qn:"Question {a} of {n}",lap:"You have gone through every question in this set. Starting over in a new order.",all:"All",review:"Review your answers",retry:"Take a new test",retryNote:"Attempt {n}. New tests favor questions you haven't seen yet; {m} of the 300 questions are still new to you.",att:"attempt",attLabel:"Attempt number",onlyWrong:"Wrong only",showAll:"All 20",yourAns:"Your answer:",rightAns:"Right answer:",noAns:"(left blank)",allRight:"You got every question right. Great job!",
   lv:["Needs coaching","Fair","Good","Excellent"],how:"This test measures how you handle real work at the café, not intelligence. A low area is where coaching helps most. Review each question below to see what you missed and why.",strong:"Your strongest area",weak:"Area to practice",
   tips:{TT:"Practice counting the drawer and giving change with your manager; when it's busy, let the POS or a calculator do the math.",CT:"Review the recipe site and practice scaling recipes for big batches or catering.",FC:"Ask your manager how food cost works; help with inventory counts and ordering.",UT:"Watch how a strong shift lead handles a rush. Rule of thumb: greet first, make orders in the order they came in.",QT:"Tap Food safety practice below to study 180 questions with explanations, by topic; at work, when unsure, ask right away instead of guessing."}}};
 function skillLv(p,lg){const v=SKL[lg].lv;return p>=85?v[3]:p>=65?v[2]:p>=45?v[1]:v[0]}
@@ -544,7 +544,7 @@ function score(t,a,lg){
     const p=Math.round(tot/t.items.length*100),used=skillSt.used||Math.min(SKILL_MIN*60,Math.round((Date.now()-(skillSt.start||Date.now()))/1000)),m=Math.max(1,Math.round(used/60));
     sc._all=p;sc._ok=tot;sc._min=m;
     const order=Object.keys(t.dims).sort((x,y)=>sc[y]-sc[x]);
-    return {summary:`${tot}/${t.items.length} · ${skillLv(p,lg)} · ${m} ${SKL[lg].minutes}`,sc,order}}
+    return {summary:`${tot}/${t.items.length} · ${skillLv(p,lg)} · ${m} ${SKL[lg].minutes}`+((skillSt.n||1)>1?` · ${SKL[lg].att} ${skillSt.n}`:""),sc,order}}
   const sum={},n={};
   t.items.forEach(([_,d,r],i)=>{const v=a[i];if(v===undefined)return;sum[d]=(sum[d]||0)+(r?6-v:v);n[d]=(n[d]||0)+1});
   const sc={};
@@ -592,11 +592,11 @@ function renderSkill(t,idx,a,S){
   if(pr.on&&(!started||fin))return renderPractice(t,idx,S);
   let h=`<section class="intro"><div class="num">${S.test} ${idx+1} / ${T().length} · ${SKN} ${S.q} · ${SKILL_MIN} ${K.minutes}</div><h2>${esc(t.name)}</h2><p>${esc(t.about)}</p></section>`;
   const pracBox=`<div class="pracbox"><button class="btn ghost" id="sprac">${K.prac}</button><p>${esc(K.pracNote)}</p></div>`;
-  if(!started&&!fin){h+=`<div class="foot"><button class="btn" id="sstart">${K.start}</button><span class="err" id="err" role="alert"></span></div><p style="color:var(--muted);font-size:.88rem">${K.startNote}</p>${pracBox}`;$("#main").innerHTML=h;return}
+  if(!started&&!fin){const n=skillSt.n||1;if(n>1)h+=`<p class="flag">${esc(fmt(K.retryNote,{n,m:SKBANK.length-new Set(skillSt.seen||[]).size}))}</p>`;h+=`<div class="foot"><button class="btn" id="sstart">${K.start}</button><span class="err" id="err" role="alert"></span></div><p style="color:var(--muted);font-size:.88rem">${K.startNote}</p>${pracBox}`;$("#main").innerHTML=h;return}
   if(!fin)h+=`<div class="timer" id="timer" role="timer" aria-live="off">${K.left} ${mmss(skillLeft())}</div>`;
   h+=t.items.map((q,i)=>`<div class="q" id="q${i}"><p><b>${i+1}.</b><span>${esc(q[0])}</span></p><div class="sopts" role="group" aria-label="${i+1}">${q[3].map((o,j)=>`<button class="opt sopt${a[i]===j?" on":""}" data-sq="${i}" data-sv="${j}"${fin?" disabled":""}>${"ABCD"[j]}. ${esc(o)}</button>`).join("")}</div></div>`).join("");
   if(!fin)h+=`<div class="foot"><button class="btn" id="ssubmit">${K.submit}</button><span class="err" id="err" role="alert"></span><span id="cnt" style="color:var(--muted);font-size:.85rem;margin-left:auto">${fmt(S.answered,{a:Object.keys(a).length,n:t.items.length})}</span></div>`;
-  h+=`<div id="res"></div>`+(fin?pracBox:"");$("#main").innerHTML=h;
+  h+=`<div id="res"></div>`+(fin?`<div class="pracbox"><button class="btn" id="sretry">${K.retry}</button></div>`+pracBox:"");$("#main").innerHTML=h;
   if(fin)showResult(t,false);
 }
 let revAll=false;
@@ -691,7 +691,7 @@ async function saveResult(t){
   setStatus(S.saving);
   if(mode==="web"){
     try{
-      const rows=Object.keys(tv.dims).map(d=>[tv.dims[d][0],rv.sc[d]]);if(t.kind==="skill")rows.push([SKL.vi.time,rv.sc._min]);
+      const rows=Object.keys(tv.dims).map(d=>[tv.dims[d][0],rv.sc[d]]);if(t.kind==="skill")rows.push([SKL.vi.time,rv.sc._min],[SKL.vi.attLabel,skillSt.n||1]);
       await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},
         body:JSON.stringify({name,lang,testId:t.id,testName:tv.name,summary:rv.summary,dims:rows,tests:TT.vi.map(x=>x.name)})});
       setStatus(S.sent,true);
@@ -779,6 +779,7 @@ document.addEventListener("click",e=>{
   if(pv){if(!pr.on||pr.pick!==null)return;pr.pick=+pv.dataset.pv;pr.n++;if(pr.pick===pr.perm.indexOf(0))pr.ok++;render();const x=$(".pexp");if(x)x.scrollIntoView({behavior:"smooth",block:"nearest"});return}
   const rv=e.target.closest("[data-rev]");if(rv){revAll=rv.dataset.rev==="1";const t=T().find(x=>x.id==="skill");if(t)showResult(t,false);const r=$(".review");if(r)r.scrollIntoView({block:"start"});return}
   const ptp=e.target.closest("[data-ptopic]");if(ptp){pracStart(ptp.dataset.ptopic);render();window.scrollTo({top:0});return}
+  if(e.target.id==="sretry"){const seen=[...new Set([...(skillSt.seen||[]),...(skillSt.draw||[]).map(d=>d[0])])];skillSt={seen,n:(skillSt.n||1)+1};ls.set("hs2_skill",skillSt);answers.skill={};ls.set("hs2_ans",answers);delete done.skill;ls.set("hs2_done",done);revAll=false;pr={on:false};syncSkill();render();window.scrollTo({top:0});return}
   if(e.target.id==="sprac"){pracStart();render();window.scrollTo({top:0});return}
   if(e.target.id==="pnext"){pr.i++;pr.lap=false;if(pr.i>=pr.order.length){pr.order=shuf(pr.order);pr.i=0;pr.lap=true}pr.pick=null;pr.perm=shuf([0,1,2,3]);render();window.scrollTo({top:0});return}
   if(e.target.id==="pexit"){pr={on:false};render();window.scrollTo({top:0});return}
@@ -787,7 +788,7 @@ document.addEventListener("click",e=>{
     so.parentNode.querySelectorAll(".sopt").forEach(b=>b.classList.toggle("on",b===so));$("#q"+q).classList.remove("miss");$("#err").textContent="";skillWarn=false;
     $("#cnt").textContent=fmt(t$().answered,{a:Object.keys(answers.skill).length,n:SKN});return}
   if(e.target.id==="sstart"){if(!$("#pname").value.trim()){$("#err").textContent=t$().needName;$("#pname").focus();return}
-    pr={on:false};skillSt={start:Date.now(),draw:skillDraw()};ls.set("hs2_skill",skillSt);syncSkill();answers.skill={};ls.set("hs2_ans",answers);render();window.scrollTo({top:0});return}
+    pr={on:false};skillSt={start:Date.now(),draw:skillDraw(skillSt.seen),seen:skillSt.seen||[],n:skillSt.n||1};ls.set("hs2_skill",skillSt);syncSkill();answers.skill={};ls.set("hs2_ans",answers);render();window.scrollTo({top:0});return}
   if(e.target.id==="ssubmit"){const a=answers.skill||{},miss=[...Array(SKN).keys()].filter(i=>a[i]===undefined);
     if(!$("#pname").value.trim()){$("#err").textContent=t$().needName;$("#pname").focus();return}
     if(miss.length&&!skillWarn){skillWarn=true;miss.forEach(i=>$("#q"+i).classList.add("miss"));$("#err").textContent=fmt(SKL[lang].unanswered,{n:miss.length});return}
