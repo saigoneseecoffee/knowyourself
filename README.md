@@ -8,9 +8,10 @@ Saigonesee – 18 bài đánh giá tính cách, lãnh đạo, động lực và 
 
 Câu hỏi là bản rút gọn tự viết theo từng mô hình, không phải bộ câu hỏi chính thức.
 
-Bài 18 khác 17 bài kia: đây là bài trắc nghiệm có đáp án đúng, lấy từ thư viện 300 câu (`BANK_QT` và `BANK_REST` trong `index.html`).
+Bài 18 khác 17 bài kia: đây là bài trắc nghiệm có đáp án đúng, lấy từ thư viện 304 câu (`BANK_QT` và `BANK_REST` trong `index.html`).
 
-- **Thư viện:** 180 câu an toàn thực phẩm theo kiến thức Food Handler / Certified Food Protection Manager (FDA Food Code) và luật dị ứng Massachusetts (105 CMR 590), chia 7 chủ đề: vệ sinh cá nhân 25, bệnh và báo cáo 18, thời gian và nhiệt độ 40, lây nhiễm chéo và bảo quản 30, làm sạch và khử trùng 22, dị ứng và luật Massachusetts 25, nhận hàng và côn trùng 20. Cộng 30 câu cho mỗi nhóm tính tiền, công thức, chi phí và hàng hóa, xử lý khi đông khách.
+- **Thư viện:** 183 câu an toàn thực phẩm theo kiến thức Food Handler / Certified Food Protection Manager (FDA Food Code) và luật dị ứng Massachusetts (105 CMR 590), chia 7 chủ đề: vệ sinh cá nhân 25, bệnh và báo cáo 18, thời gian và nhiệt độ 43, lây nhiễm chéo và bảo quản 30, làm sạch và khử trùng 22, dị ứng và luật Massachusetts 25, nhận hàng và côn trùng 20. Cộng 30 câu cho mỗi nhóm tính tiền, công thức, chi phí và hàng hóa, và 31 câu xử lý khi đông khách.
+- **Quy định riêng của Saigonesee có trong câu hỏi:** last order 7:45 tối (thứ Hai đến thứ Bảy) và 2:45 chiều (Chủ nhật); bánh tart trứng hết thì làm mẻ mới, không bấm hết; foam kem và kem muối dùng tối đa 48 giờ (luật cho phép 7 ngày).
 - **Bài kiểm tra:** mỗi người bốc ngẫu nhiên 20 câu (8 an toàn thực phẩm + 3 mỗi nhóm khác), thứ tự đáp án được xáo, giới hạn 15 phút, làm một lần. Kết quả chỉ hiện điểm theo nhóm, không hiện đáp án.
 - **Ôn tập an toàn thực phẩm:** không tính giờ, không lưu điểm; chọn ôn tất cả hoặc từng chủ đề; trả lời xong hiện đáp án đúng và giải thích. Bị ẩn khi đang làm bài kiểm tra.
 - **Thêm câu hỏi:** thêm một dòng vào `BANK_QT` hoặc `BANK_REST` theo định dạng `[mã, nhóm, chủ đề, câu VI, [4 đáp án VI, đáp án đúng đứng đầu], câu EN, [4 đáp án EN], giải thích VI, giải thích EN]`. App tự xáo đáp án.
